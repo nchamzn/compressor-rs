@@ -2,6 +2,8 @@
 Doing dubious image compression things
 
 ```
+Download and re-compress images. Don't ask why
+
 Usage: compressor-rs.exe [OPTIONS] --input-file <INPUT_FILE>
 
 Options:
