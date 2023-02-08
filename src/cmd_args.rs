@@ -9,11 +9,11 @@ pub struct Args {
     #[arg(short, long)]
     pub input_file: String,
 
-    /// Folder where urls are downloaded to
+    /// Folder where images are downloaded
     #[arg(short, long, default_value_t = String::from("download_path"))]
     pub download_folder: String,
 
-    /// Where the compressed files should be saved to
+    /// Where the compressed images should be saved
     #[arg(short, long, default_value_t = String::from("compressed_files"))]
     pub compressed_files_folder: String,
     
