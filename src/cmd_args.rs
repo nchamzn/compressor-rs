@@ -16,4 +16,8 @@ pub struct Args {
     /// Where the compressed files should be saved to
     #[arg(short, long, default_value_t = String::from("compressed_files"))]
     pub compressed_files_folder: String,
+    
+    /// The jpeg compression quality setting. 
+    #[arg(short, long, default_value_t = 80.0)]
+    pub quality_factor: f32
 }

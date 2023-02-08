@@ -43,12 +43,12 @@ async fn download_files(links: &HashSet<Url>, download_folder: &str) -> anyhow::
     Ok(())
 }
 
-fn resize_all_in_folder(input_folder: &str, output_folder: &str) {
+fn resize_all_in_folder(input_folder: &str, output_folder: &str, quality_factor: f32) {
     let origin = PathBuf::from(input_folder);
     let dest = PathBuf::from(output_folder);
 
     let mut comp = FolderCompressor::new(origin, dest);
-    comp.set_factor(Factor::new(80., 1.0));
+    comp.set_factor(Factor::new(quality_factor, 1.0));
     comp.set_thread_count(4);
 
     match comp.compress() {
@@ -88,7 +88,11 @@ fn main() -> anyhow::Result<()> {
 
     handle.block_on(download_files(&links, &download_folder))?;
 
-    resize_all_in_folder(&download_folder, &compressed_files_folder);
+    resize_all_in_folder(
+        &download_folder,
+        &compressed_files_folder,
+        args.quality_factor,
+    );
 
     Ok(())
 }
