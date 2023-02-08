@@ -17,7 +17,7 @@ use cmd_args::Args;
 
 async fn download_files(links: &HashSet<Url>, download_folder: &str) -> anyhow::Result<()> {
     let bodies = join_all(links.into_iter().map(|url| async move {
-        println!("Downloading {:?}", url);
+        println!("Downloading {:?}", url.to_string());
         let resp = reqwest::get(url.to_string()).await?;
         let bytes = resp.bytes().await;
         let file_name = url.path_segments().unwrap().last().unwrap();
@@ -30,7 +30,6 @@ async fn download_files(links: &HashSet<Url>, download_folder: &str) -> anyhow::
     for b in bodies {
         match b {
             Ok((name, Ok(b))) => {
-                println!("Got b: {:?}", b.len());
                 let path = Path::new(download_folder).join(name);
                 if let Ok(mut file) = File::create(path) {
                     file.write_all(&b)?;
