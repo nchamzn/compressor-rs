@@ -1,6 +1,6 @@
 use clap::Parser;
 
-/// Download and re-compress images in a file
+/// Download and re-compress images. Don't ask why.
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 
