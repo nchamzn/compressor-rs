@@ -16,8 +16,12 @@ pub struct Args {
     /// Where the compressed images should be saved
     #[arg(short, long, default_value_t = String::from("compressed_files"))]
     pub compressed_files_folder: String,
-    
-    /// The jpeg compression quality setting. 
+
+    /// The jpeg compression quality setting.
     #[arg(short, long, default_value_t = 80.0)]
-    pub quality_factor: f32
+    pub quality_factor: f32,
+
+    /// The jpeg compression quality setting.
+    #[arg(long, default_value_t = false)]
+    pub image_comparison: bool,
 }
